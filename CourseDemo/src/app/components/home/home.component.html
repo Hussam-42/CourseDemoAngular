@@ -1,0 +1,18 @@
+
+<img *ngIf="IsImgShown" [src]="StoreInfo.imgURL" alt="img" class="img-fluid m-1">
+
+<h2>{{StoreInfo.name}}</h2>
+
+<button class="btn btn-outline-dark" (click)="toggleImg()">Toggle</button>
+
+<h3>Our branches</h3>
+
+<ul>
+
+  <li *ngFor="let item of StoreInfo.branches">
+
+    {{item}}
+
+  </li>
+
+</ul>
