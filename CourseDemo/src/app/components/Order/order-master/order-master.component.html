@@ -1,0 +1,72 @@
+<div class="mb-3">
+
+  <label for="prdCat" class="form-label">Category</label>
+
+    <select name="cat" id="prdCat" class="form-control" [(ngModel)]="selectedCatId">
+    <option value="0">All</option>
+    <option *ngFor="let cat of catList" [value]="cat.id">{{cat.name}}</option>
+
+  </select>
+
+</div>
+
+<hr/>
+
+<div class="bg-info">
+  <app-product-list [sentCatID]="selectedCatId" (ItemBought)="onItemBought($event)"></app-product-list>
+</div>
+
+<hr/>
+
+
+<table class="table table-striped">
+
+  <thead class="bg-dark text-light">
+
+  <tr>
+
+    <th>#</th>
+    <th>Name</th>
+    <th>Count</th>
+    <th>Price</th>
+    <th>Total</th>
+    <th>Remove item from cart</th>
+
+  </tr>
+
+  </thead>
+
+  <tbody>
+
+    <tr *ngFor="let item of TotalCartItems, index as i">
+
+      <td>{{i + 1}}</td>
+      <td>{{item.name}}</td>
+      <td><input #newCount type="number" [value]="item.count" class="form-control" (change)="changeCount(item.name, item.count, newCount.value)"></td>
+      <td>{{item.price | currency : "EGP" : "code" }}</td>
+      <td>{{item.total | currency : "EGP" : "code" }}</td>
+      <td><input type="button" class="btn btn-outline-danger" value="Remove" (click)="removeItemFromCart(item.name)"></td>
+
+    </tr>
+
+  </tbody>
+
+  <tfoot>
+
+  </tfoot>
+
+  </table>
+
+<hr/>
+
+<div>
+
+  <h3>Enter Your Name</h3>
+
+  <input #clientNameIpt type="text" class="form-control" />
+
+</div>
+
+<input type="button" value="Test" class="btn btn-outline-danger" (click)="testViewChild()" />
+
+<h3> Order Total Price: {{orderTotalPrice}} </h3>

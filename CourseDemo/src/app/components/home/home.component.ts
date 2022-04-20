@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { StoreData } from 'src/app/Models/store-data';
+import { StoreData } from 'src/app/ViewModels/store-data';
 
 @Component({
   selector: 'app-home',

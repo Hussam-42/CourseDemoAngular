@@ -1,0 +1,62 @@
+
+
+<!-- <div class="text-secondary"> [To be removed] for test:
+
+{{selectedCatId}}
+
+<input type="button" class="btn btn-outline-primary" value="Change Category" (click)="changeCat()" />
+
+</div> -->
+
+<hr>
+
+<table class="table table-striped">
+
+<thead class="bg-dark text-light">
+
+<tr>
+
+  <th>#</th>
+  <th>Name</th>
+  <th>Image</th>
+  <th>Available Quantity</th>
+  <th>Price</th>
+  <th>Enter the amount</th>
+  <th>Buy</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+  <tr *ngFor="let prod of prdListodCat, index as i">
+      <!-- [class.b-none]="selectedCatId != prod.categoryID" -->
+      <!-- [style.background-color]="(prod.quantity == 0)? 'yellow' : 'lightgrey' "> -->
+
+    <td>{{i + 1}}</td>
+    <td>{{prod.name}}</td>
+    <td><img LightBox="red" defaultColor="gray" [src]="prod.imgURL"/></td>
+    <td>
+<!-- [ngClass]="{'bg-warning': prod.quantity == 1, 'text-danger':prod.quantity == 0}" -->
+      <ng-container [ngSwitch]="prod.quantity">
+        <div *ngSwitchCase="0"> Out of stock </div>
+        <div *ngSwitchCase="1"> last item </div>
+        <div *ngSwitchDefault > {{prod.quantity}} </div>
+      </ng-container>
+
+    </td>
+    <td>{{prod.price | currency}}</td>
+    <td><input #itemsCount type="number" class="form-control" /></td>
+    <td><input value="Buy" type="button" class="btn btn-secondary" (click)="Buy(prod.name ,prod.price, itemsCount.value)" /></td>
+
+  </tr>
+
+</tbody>
+
+<tfoot>
+
+</tfoot>
+
+</table>
+
