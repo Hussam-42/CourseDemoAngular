@@ -22,7 +22,8 @@
   <th>Available Quantity</th>
   <th>Price</th>
   <th>Enter the amount</th>
-  <th>Buy</th>
+  <th>Details</th>
+  <th>Add</th>
 
 </tr>
 
@@ -48,6 +49,8 @@
     </td>
     <td>{{prod.price | currency}}</td>
     <td><input #itemsCount type="number" class="form-control" /></td>
+    <!-- <td><input value="Show Details" type="button" class="btn btn-secondary" (click)="showPrdDetails(prod.id)" /></td> -->
+    <td><a class="btn btn-dark" [routerLink]="['/product-details', prod.id]" > Show Detials </a>  </td>
     <td><input value="Buy" type="button" class="btn btn-secondary" (click)="Buy(prod.name ,prod.price, itemsCount.value)" /></td>
 
   </tr>

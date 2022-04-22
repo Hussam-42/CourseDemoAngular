@@ -78,7 +78,7 @@ export class OrderMasterComponent implements OnInit, AfterViewInit {
 
   testViewChild() : void
   {
-      this.ProductListComponentRef.prdList[0].quantity -= 1;
+      // this.ProductListComponentRef.prdList[0].quantity -= 1;
   }
 
 }

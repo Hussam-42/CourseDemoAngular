@@ -1,7 +1,29 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ErrorComponent } from './components/error/error.component';
+import { HomeComponent } from './components/home/home.component';
+import { LoginUserComponent } from './components/login-user/login-user.component';
+import { MainLayoutComponent } from './components/main-layout/main-layout.component';
+import { OrderMasterComponent } from './components/Order/order-master/order-master.component';
+import { ProductListComponent } from './components/Order/product-list/product-list.component';
+import { ProductDetailsComponent } from './components/product-details/product-details.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+
+  {path: '' , component: MainLayoutComponent, children: [
+
+    { path: '', redirectTo: '/Home', pathMatch: 'full'},
+    { path: 'Home', component: HomeComponent},
+    { path: 'Products', component: ProductListComponent},
+    { path: 'Order', component: OrderMasterComponent},
+    { path: 'product-details/:id', component: ProductDetailsComponent},
+
+  ]},
+
+  { path: 'login-user', component: LoginUserComponent},
+  { path: '**', component: ErrorComponent}
+
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
