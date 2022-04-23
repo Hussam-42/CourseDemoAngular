@@ -10,7 +10,8 @@
       <a routerLinkActive="Active" routerLink="/Home" class="nav-item nav-link">Home</a>
       <a routerLinkActive="Active" routerLink="/Products" class="nav-item nav-link">Products</a>
       <a routerLinkActive="Active" routerLink="/Order" class="nav-item nav-link">Order</a>
-      <a routerLinkActive="Active" routerLink="/login-user" class="nav-item nav-link">Login</a>
+      <a routerLinkActive="Active" [hidden]="isUserLogged" routerLink="/login-user" class="nav-item nav-link">Login</a>
+      <a routerLinkActive="Active" [hidden]="!isUserLogged" routerLink="/logout-user" class="nav-item nav-link">Logout</a>
       <!-- <a class="nav-item nav-link disabled" href="#">Disabled</a> -->
     </div>
   </div>

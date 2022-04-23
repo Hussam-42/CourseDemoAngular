@@ -16,6 +16,7 @@ import { ErrorComponent } from './components/error/error.component';
 import { MainLayoutComponent } from './components/main-layout/main-layout.component';
 import { LoginUserComponent } from './components/login-user/login-user.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
+import { LogoutUserComponent } from './components/logout-user/logout-user.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { ProductDetailsComponent } from './components/product-details/product-de
     MainLayoutComponent,
     LoginUserComponent,
     ProductDetailsComponent,
+    LogoutUserComponent,
   ],
   imports: [
     BrowserModule,

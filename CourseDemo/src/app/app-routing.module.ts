@@ -7,6 +7,7 @@ import { MainLayoutComponent } from './components/main-layout/main-layout.compon
 import { OrderMasterComponent } from './components/Order/order-master/order-master.component';
 import { ProductListComponent } from './components/Order/product-list/product-list.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
+import { AuthGuard } from './Guards/auth.guard';
 
 const routes: Routes = [
 
@@ -15,12 +16,14 @@ const routes: Routes = [
     { path: '', redirectTo: '/Home', pathMatch: 'full'},
     { path: 'Home', component: HomeComponent},
     { path: 'Products', component: ProductListComponent},
-    { path: 'Order', component: OrderMasterComponent},
+    { path: 'Order', component: OrderMasterComponent, canActivate : [AuthGuard] },
+    //, data : {target : "/order"}
     { path: 'product-details/:id', component: ProductDetailsComponent},
 
   ]},
 
   { path: 'login-user', component: LoginUserComponent},
+  { path: 'logout-user', component: LoginUserComponent},
   { path: '**', component: ErrorComponent}
 
 ];
