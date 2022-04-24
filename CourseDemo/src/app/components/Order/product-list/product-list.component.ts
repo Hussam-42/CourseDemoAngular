@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange
 import { ActivatedRoute, Router } from '@angular/router';
 import { ICategory } from 'src/app/Models/icategory';
 import { IProduct } from 'src/app/Models/iproduct';
+import { ProductsService } from 'src/app/Services/products.service';
 import { StaticProductsService } from 'src/app/Services/static-products.service';
 import { ICartVM } from 'src/app/ViewModels/icart-vm';
 import { Cart } from './Cart';
@@ -21,7 +22,7 @@ export class ProductListComponent implements OnInit, OnChanges {
 
   prdListodCat : IProduct[] = [];
 
-  constructor(private staticprdService: StaticProductsService, private router : Router) {
+  constructor(private staticprdService: StaticProductsService, private router : Router, private PrdService : ProductsService) {
 
     this.ItemBought = new EventEmitter<ICartVM>();
     // this.prdList = [{
@@ -39,12 +40,16 @@ export class ProductListComponent implements OnInit, OnChanges {
     // }];
 
     // this.prdListodCat = this.prdList;
+
 }
   ngOnChanges(): void {
 
 
-    this.prdListodCat = this.staticprdService.getProductByCatID(this.sentCatID);
+    // this.prdListodCat = this.staticprdService.getProductByCatID(this.sentCatID);
 
+    this.PrdService.getProductsByCatId(this.sentCatID).subscribe(
+      (prds) => this.prdListodCat = prds
+    );
     // if(this.sentCatID == 0)
     // {
     //   this.prdListodCat = this.prdList;
@@ -55,7 +60,12 @@ export class ProductListComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-    this.prdListodCat = this.staticprdService.getAllProducts();
+    // this.prdListodCat = this.staticprdService.getAllProducts();
+
+    this.PrdService.getAllProducts().subscribe(
+      (prds) => this.prdListodCat = prds
+    );
+
   }
 
   Buy(prdName:string, prdPrice:number, prdCount:string)

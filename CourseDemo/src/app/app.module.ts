@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
+
+import { HttpClientModule} from "@angular/common/http"
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -17,6 +18,8 @@ import { MainLayoutComponent } from './components/main-layout/main-layout.compon
 import { LoginUserComponent } from './components/login-user/login-user.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { LogoutUserComponent } from './components/logout-user/logout-user.component';
+import { importType } from '@angular/compiler/src/output/output_ast';
+import { AddProductComponent } from './components/add-product/add-product.component';
 
 @NgModule({
   declarations: [
@@ -34,11 +37,13 @@ import { LogoutUserComponent } from './components/logout-user/logout-user.compon
     LoginUserComponent,
     ProductDetailsComponent,
     LogoutUserComponent,
+    AddProductComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

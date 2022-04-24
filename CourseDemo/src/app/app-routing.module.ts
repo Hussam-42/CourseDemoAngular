@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AddProductComponent } from './components/add-product/add-product.component';
 import { ErrorComponent } from './components/error/error.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginUserComponent } from './components/login-user/login-user.component';
@@ -16,10 +17,10 @@ const routes: Routes = [
     { path: '', redirectTo: '/Home', pathMatch: 'full'},
     { path: 'Home', component: HomeComponent},
     { path: 'Products', component: ProductListComponent},
+    { path: 'Product/Add', component: AddProductComponent},
     { path: 'Order', component: OrderMasterComponent, canActivate : [AuthGuard] },
     //, data : {target : "/order"}
     { path: 'product-details/:id', component: ProductDetailsComponent},
-
   ]},
 
   { path: 'login-user', component: LoginUserComponent},
