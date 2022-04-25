@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observer } from 'rxjs';
 import { combineLatestInit } from 'rxjs/internal/observable/combineLatest';
+import { ICategory } from 'src/app/Models/icategory';
 import { IProduct } from 'src/app/Models/iproduct';
 import { ProductsService } from 'src/app/Services/products.service';
 
@@ -11,30 +12,37 @@ import { ProductsService } from 'src/app/Services/products.service';
 })
 export class AddProductComponent implements OnInit {
 
-  constructor(private prdService : ProductsService) { }
+  newProd : IProduct = {} as IProduct;
+  catList : ICategory[];
+  constructor(private prdService : ProductsService) {
+
+    this.catList =
+    [{
+      id:1, name:"laptop"
+    },
+    {
+      id:2, name:"Tablet"
+    },
+    {
+      id:3, name:"Mobile"
+    }]
+
+   }
 
   ngOnInit(): void {
   }
 
   AddProduct()
   {
-    const NewPrd : IProduct = {
-      id:700,
-      name:"Hiso product",
-      price:4000,
-      quantity:3,
-      imgURL:'',
-      categoryID:2
-    }
 
-    const observer : Observer<IProduct> = {
+      const observer : Observer<IProduct> = {
 
       next : (prd:IProduct) => alert("Added successfully"),
       error : (err:Error) => alert("Error occured"), // not recommended
       complete : () => {},
     }
 
-    this.prdService.addProduct(NewPrd).subscribe(observer);
+    this.prdService.addProduct(this.newProd).subscribe(observer);
 
   }
 

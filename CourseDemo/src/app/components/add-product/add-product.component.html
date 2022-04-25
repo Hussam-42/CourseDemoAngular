@@ -1,1 +1,44 @@
-<button class="btn btn-success m-3" (click)="AddProduct()">Add</button>
+
+<div>
+
+  {{ newProd | json }}
+
+</div>
+
+<form #frm="ngForm" (ngSubmit)="AddProduct()">
+
+  <div class="mb-3">
+    <label for="pname" class="form-label">Product Name</label>
+    <input type="text" #prdNameInp="ngModel" name="prdname" class="form-control" id="pname" [(ngModel)]="newProd.name" required pattern="[A-Za-z]{3,}">
+    <div [hidden]="prdNameInp.valid || prdNameInp.untouched" class="alert alert-danger">
+    <small *ngIf="prdNameInp.errors?.['required']">Name is required</small><br>
+    <small *ngIf="prdNameInp.errors?.['pattern']">Name must be at least three characters</small>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="pprice" class="form-label">Price</label>
+    <input type="number" name="prdprice" class="form-control" id="pprice" min="10" [(ngModel)]="newProd.price">
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label" for="pquantity">Quantity</label>
+    <input type="number" name="prdquantity" class="form-control" id="pquantity" min="0" [(ngModel)]="newProd.quantity">
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label" for="pimg">Image</label>
+    <input type="file" name="prdimg" class="form-control" id="pimg" [(ngModel)]="newProd.imgURL">
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label" for="pcatId">Check me out</label>
+
+    <select name="cat" name="prdcat" id="pcatId" class="form-control" [(ngModel)]="newProd.categoryID">
+      <option *ngFor="let cat of catList" [value]="cat.id">{{cat.name}}</option>
+    </select>
+
+  </div>
+
+  <button [disabled]="frm.invalid" type="submit" class="btn btn-primary">Submit</button>
+</form>
